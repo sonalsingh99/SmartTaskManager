@@ -1,4 +1,4 @@
-from tkinter import Tk, Text, BOTH, W, N, E, S
+from tkinter import *
 from tkinter.ttk import Frame, Button, Label, Style
 
 
