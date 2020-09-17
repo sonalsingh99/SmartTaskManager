@@ -20,44 +20,46 @@ btnState = False
 def switch():
     global btnState
     if btnState:
-        btn.config(image=offImg, bg="#CECCBE", activebackground="#CECCBE")
+        btn.config(bg="#CECCBE", activebackground="#CECCBE",fg="black")
+        abtn.config(bg="#CECCBE", activebackground="#CECCBE",fg="black")
+        cbtn.config(bg="#CECCBE", activebackground="#CECCBE",fg="black")
+        hbtn.config(bg="#CECCBE", activebackground="#CECCBE",fg="black")
         root.config(bg="#CECCBE")
-        
+        area.config(bg="#CECCBE")
         btnState = False
     else:
-        btn.config(image=onImg, bg="#2B2B2B", activebackground="#2B2B2B")
+        btn.config( bg="#2B2B2B", activebackground="#2B2B2B",fg="green")
+        abtn.config( bg="#2B2B2B", activebackground="#2B2B2B",fg="green")
+        cbtn.config( bg="#2B2B2B", activebackground="#2B2B2B",fg="green")
+        hbtn.config( bg="#2B2B2B", activebackground="#2B2B2B",fg="green")
         root.config(bg="#2B2B2B")
-       
+        area.config(bg="#2B2B2B")
         btnState = True
 
-# loading the switch images:
-onImg = PhotoImage(file =r"C:\Users\sonal\Downloads\sun.png")
-offImg = PhotoImage(file =r"C:\Users\sonal\Downloads\sun-dark.png")
 
-
-lbl = Label(root, text="Smart Task Manager ")
-lbl.grid(sticky=W, pady=4, padx=5)
-
-area = Text(root)
+area = tk.Text(root,background ="#CECCBE")
 area.grid(row=1, column=0, columnspan=2, rowspan=4,
 padx=5, sticky=E+W+S+N)
 
-abtn = Button(root, text="Apps")
+abtn = tk.Button(root, text="Apps",borderwidth = 1)
 abtn.grid(row=1, column=3)
     
 
-cbtn = Button(root, text="CPU-Graph")
+cbtn = tk.Button(root, text="CPU-Graph",borderwidth = 1)
 cbtn.grid(row=2, column=3, pady=4)
 
-hbtn = Button(root, text="Auto-Refresh")
+hbtn = tk.Button(root, text="Auto-Refresh",borderwidth = 1)
 hbtn.grid(row=5, column=0, padx=5)
-# Night mode label:
 
 
 # switch widget:
-btn = tk.Button(root, text="OFF", borderwidth=0, command=switch, bg="#CECCBE", activebackground="#CECCBE")
+btn = tk.Button(root, text="Mode", command=switch,borderwidth = 1, bg="#CECCBE", activebackground="#CECCBE")
 btn.grid(row=5, column=3)
-btn.config(image=offImg)
+btn.config(bg="#CECCBE")
+
+
+
+
 
 # window in mainloop:
 root.mainloop()
