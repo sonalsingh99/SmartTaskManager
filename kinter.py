@@ -52,9 +52,8 @@ class Example(Frame):
 
         self.after(10, do_something)
 
-    #Process terminator
 
-
+        
         abtn = tk.Button(self, text="Apps",borderwidth = 1)
         abtn.grid(row=1, column=3)
     
@@ -117,13 +116,6 @@ if __name__ == '__main__':
       
         # Displaying the P_ID and P_Name of the process 
             print(f"{process.ProcessId:<10} {process.Name}")
-
-
-       
-
-    
-    
-    # create instance of file like object
 
     
     main()
