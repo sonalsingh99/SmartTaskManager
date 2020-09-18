@@ -24,11 +24,6 @@ class Example(Frame):
         self.initUI()
 
 
-   
-
-
-    
-
     def initUI(self):
 
         self.master.title("Smart Task Manager")
