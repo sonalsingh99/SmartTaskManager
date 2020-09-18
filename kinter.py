@@ -1,5 +1,17 @@
 from tkinter import Tk, Text, BOTH, W, N, E, S
 from tkinter.ttk import Frame, Button, Label, Style
+import tkinter as tk
+import sys
+class PrintLogger(): # create file like object
+    def __init__(self, textbox): # pass reference to text widget
+        self.textbox = textbox # keep ref
+
+    def write(self, text):
+        self.textbox.insert(tk.END, text) # write text to textbox
+            # could also scroll to end of textbox here to make sure always visible
+
+    def flush(self): 
+        pass
 
 
 class Example(Frame):
@@ -8,7 +20,6 @@ class Example(Frame):
         super().__init__()
 
         self.initUI()
-
 
     def initUI(self):
 
@@ -23,11 +34,20 @@ class Example(Frame):
         lbl = Label(self, text="Smart Task Manager ")
         lbl.grid(sticky=W, pady=4, padx=5)
 
-        area = Text(self)
+        area = tk.Text(self)
         area.grid(row=1, column=0, columnspan=2, rowspan=4,
             padx=5, sticky=E+W+S+N)
 
-        abtn = Button(self, text="Apps")
+        def printOutput():
+
+            pl = PrintLogger(area)
+
+    # replace sys.stdout with our object
+            sys.stdout = pl
+
+            self.after(10, do_something)
+
+        abtn = Button(self, text="Apps",command=printOutput)
         abtn.grid(row=1, column=3)
     
 
@@ -40,16 +60,35 @@ class Example(Frame):
         obtn = Button(self, text="MODE",command=self.master.destroy)
         obtn.grid(row=5, column=3)
         self.quit =Button(self, text="QUIT",command=self.master.destroy)
+
+
        
 def main():
 
-    root = Tk()
+    root = tk.Tk()
     root.geometry("350x300+300+300")
     app = Example()
     root.mainloop()
 
 
 if __name__ == '__main__':
-   
-    main()
+
+
+    def do_something():
+      
+        import wmi 
+  
+    # Initializing the wmi constructor 
+        f = wmi.WMI() 
+  
+    # Printing the header for the later columns 
+        print("pid   Process name") 
+  
+    # Iterating through all the running processes  
+        for process in f.Win32_Process(): 
+      
+        # Displaying the P_ID and P_Name of the process 
+            print(f"{process.ProcessId:<10} {process.Name}")
+
     
+    main()
